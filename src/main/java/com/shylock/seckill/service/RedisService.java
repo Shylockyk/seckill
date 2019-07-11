@@ -15,4 +15,8 @@ public interface RedisService {
     void setExpire(String key, int seconds, Object value);
 
     Boolean delete(String key);
+
+    Long incr(String key);
+
+    Long decr(String key);
 }

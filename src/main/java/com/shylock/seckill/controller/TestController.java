@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author: yk
@@ -58,5 +60,21 @@ public class TestController {
     @RequestMapping("/testRedis3")
     public Result<User> testRedis3(String key) {
         return Result.success((User) redisServiceImpl.get(key));
+    }
+
+    @RequestMapping("/testRedis4")
+    public Result<String> testRedis4(String key) {
+        User u = userServiceImpl.getUserById(1);
+        List<User> list = new ArrayList<>();
+        list.add(u);
+        list.add(u);
+        list.add(u);
+        redisServiceImpl.set(key, list);
+        return Result.success("user");
+    }
+
+    @RequestMapping("/testRedis5")
+    public Result<List<User>> testRedis5(String key) {
+        return Result.success((List<User>) redisServiceImpl.get(key));
     }
 }

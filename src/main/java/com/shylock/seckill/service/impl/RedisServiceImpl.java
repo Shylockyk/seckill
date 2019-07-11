@@ -42,4 +42,16 @@ public class RedisServiceImpl implements RedisService {
     public Boolean delete(String key) {
         return redisTemplate.delete(key);
     }
+
+    @Override
+    public Long incr(String key) {
+        return redisTemplate.opsForValue().increment(key);
+    }
+
+    @Override
+    public Long decr(String key) {
+        return redisTemplate.opsForValue().decrement(key);
+    }
+
+
 }
